@@ -1,0 +1,197 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel = "icon" href = "{% static 'assets/images/logo2.png' %}" 
+            type = "image/x-icon">
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Topworks Blog</title>
+	<link rel="stylesheet" href="fontawesome/css/all.min.css"> <!-- https://fontawesome.com/ -->
+    <link rel="preconnect" href="https://fonts.gstatic.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css2?family=Source+Sans+Pro&display=swap" rel="stylesheet"> <!-- https://fonts.google.com/ -->
+    <link href="{% static 'assets/css/bootstrap.min.css' %}" rel="stylesheet">
+    <link href="{% static 'assets/css/templatemo-xtra-blog.css' %}" rel="stylesheet">
+
+    <style>
+        figcaption.tm-color-primary img {
+            display: none;
+        }
+    </style>
+<!--
+    
+TemplateMo 553 Xtra Blog
+
+https://templatemo.com/tm-553-xtra-blog
+
+-->
+</head>
+<body style="font-family: 'Poppins';">
+
+
+
+
+    
+	<header class="tm-header" id="tm-header">
+        <div class="tm-header-wrapper">
+            <button class="navbar-toggler" type="button" aria-label="Toggle navigation" style="background-color: #b5352b;">
+                <i class="fas fa-bars"></i>
+            </button>
+            <div class="tm-site-header">
+                <!--<div class="mb-3 mx-auto tm-site-logo"><i class="fas fa-times fa-2x"></i></div>-->            
+                <h1 class="text-center" style="text-transform: uppercase;">Topworks Blog</h1>
+            </div>
+            <nav class="tm-nav" id="tm-nav">            
+                <ul>
+                    <li class="tm-nav-item"><a href="{% url 'index' %}" class="tm-nav-link">
+                        <i class="fas fa-home"></i>
+                        Home
+                    </a></li>
+                    <li class="tm-nav-item active"><a href="{% url 'blog' %}" class="tm-nav-link">
+                        <i class="fas fa-pen"></i>
+                        Blog
+                    </a></li>
+                    <li class="tm-nav-item"><a target="_blank" href="https://wa.me/2347065469569" class="tm-nav-link">
+                        <i class="fas fa-users"></i>
+                        Chat
+                    </a></li>
+                    <li class="tm-nav-item"><a href="{% url 'academy' %}" class="tm-nav-link">
+                        <i class="far fa-comments"></i>
+                        Academy
+                    </a></li>
+                </ul>
+            </nav>
+            <!--<div class="tm-mb-65">
+                <a rel="nofollow" href="https://fb.com/templatemo" class="tm-social-link">
+                    <i class="fab fa-facebook tm-social-icon"></i>
+                </a>
+                <a href="https://twitter.com" class="tm-social-link">
+                    <i class="fab fa-twitter tm-social-icon"></i>
+                </a>
+                <a href="https://instagram.com" class="tm-social-link">
+                    <i class="fab fa-instagram tm-social-icon"></i>
+                </a>
+                <a href="https://linkedin.com" class="tm-social-link">
+                    <i class="fab fa-linkedin tm-social-icon"></i>
+                </a>
+            </div>-->
+        
+        </div>
+    </header>
+
+    <div style="width: 100%; margin-top: 0px; background-color: #b5352b; height: 40px; color: white; text-align: center;"><img style="padding:1px;padding-right: 10px;padding-left: 5px; box-sizing: content-box; background-color: white; margin-right: 10px;" height="40px" src="{% static 'assets/images/logo2.png' %}">TOPWORKS BLOG</div>
+    <div class="container-fluid">
+        <main class="tm-main">
+            <!-- Search form -->
+            <!--<div class="row tm-row">
+                <div class="col-12">
+                    <form method="GET" class="form-inline tm-mb-80 tm-search-form">                
+                        <input class="form-control tm-search-input" name="query" type="text" placeholder="Search..." aria-label="Search">
+                        <button class="tm-search-button" type="submit">
+                            <i class="fas fa-search tm-search-icon" aria-hidden="true"></i>
+                        </button>                                
+                    </form>
+                </div>                
+            </div>-->            
+            <div class="row tm-row d-flex">
+                <div class="col-lg-8 tm-post-col">
+                    <div class="tm-post-full">                    
+                        <div class="mb-4">
+                            <h2 class="pt-2 tm-color-secondary tm-post-title" style="color: #b5352b ;">{{post.title}}</h2>
+                            <p class="tm-mb-40">{{post.published_date}} posted by {{post.author}}</p>
+                            <p>
+                               {{post.content|safe}}
+                            </p>
+                            <!--<span class="d-block text-right tm-color-primary">Creative . Design . Business</span>-->
+                        </div>
+                        
+                        <!-- Comments -->
+                        <div>
+                            <h2 class="tm-color-secondary tm-post-title">Comments</h2>
+                            <hr class="tm-hr-primary tm-mb-45">
+
+                            {% for comment in comments %}
+                            <div class="tm-comment tm-mb-45">
+                                <figure class="d-flex tm-comment-figure ml-4" style="display: flex;flex-direction: column; justify-content: center; align-items: center;">
+                                    <div class="mb-2" style="border-radius: 50%; background-color: rgb(75, 8, 8); width: 50px; height: 50px; color: white; padding: 0; text-align: center; text-transform: uppercase; font-weight: 900; display: flex; justify-content: center;" ><div style="align-self: center;">{{comment.get_initials}}</div></div>
+                                    <figcaption class="tm-color-secondary text-center">{{comment.commenter}}</figcaption>
+                                </figure>
+                                <div>
+                                    <p>
+                                       {{comment.content}}
+                                    </p>
+                                    <div class="d-flex justify-content-between">
+                                        <span class="tm-color-secondary" style="font-size:15px">{{comment.comment_time}}</span>
+                                    </div>                                                 
+                                </div>                                
+                            </div>
+                            {% endfor %}
+
+                            <hr class="tm-hr-primary tm-mb-45">
+    
+                            <form action="{% url 'post-comment' %}" class="mb-5 tm-comment-form" method="post">
+                                {% csrf_token %}
+                               
+                                <h2 class="tm-color-secondary tm-post-title mb-4">Your comment</h2>
+                                
+                                <div class="mb-4" style="display: none;">
+                                    <input class="form-control" name="subject" type="text" value="{{post.id}}">
+                                </div>
+                                {% if not user.is_authenticated %}
+                                
+                                <div class="mb-4">
+                                    <input class="form-control" name="name" type="text" placeholder="Username">
+                                </div>
+                                <div class="mb-4">
+                                    <input class="form-control" name="email" type="text" placeholder="Email">
+                                </div>
+                                <div class="mb-4">
+                                    {% endif %}
+                                    <textarea class="form-control" name="message" rows="6" placeholder="Comment"></textarea>
+                                </div>
+                                <div class="text-right">
+                                    <button class="tm-btn tm-btn-primary tm-btn-small">Submit</button>                        
+                                </div>                                
+                            </form>                          
+                        </div>
+                    </div>
+                    <aside>
+                        <div class="tm-post-sidebar">
+                            
+                            <hr class="mb-3 tm-hr-primary">
+                            <h2 class="tm-mb-20 tm-post-title tm-color-secondary">Recent Posts</h2>
+    
+                            {% for post in recent_posts %}
+                            <div>
+                            <a href="{% url 'view-post' post.id %}" class="d-block tm-mb-5">
+                                <figure>
+                                    <span style="color: #b5352b;">{{post.title}}</span>
+                                    <figcaption class="tm-color-primary tm-mb-1">{{post.content|safe|truncatewords:0}}</figcaption><a href="{% url 'view-post' post.id %}">Read More</a>
+                                </figure>
+                            </a>
+                            <hr>
+                        </div>
+                            {% endfor %}
+                           
+                        </div>                    
+                    </aside>
+                </div>
+                
+            </div>
+            <hr>
+         <footer class="row tm-row">
+                
+                <div class="col-md-6 col-12 tm-color-gray">
+                    Design: <a rel="nofollow" target="_parent" href="https://wa.me/2348107301938" class="tm-external-link">CodespringsDigitalWorld</a>
+                </div>
+                <div class="col-md-6 col-12 tm-color-gray tm-copyright">
+                    Copyright 2023 Topworks
+                </div>
+            </footer>
+        </main>
+    </div>
+    <script src="{% static 'assets/js/jquery.min.js' %}"></script>
+    <script src="{% static 'assets/js/templatemo-script.js' %}"></script>
+</body>
+</html>
